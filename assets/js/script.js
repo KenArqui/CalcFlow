@@ -6,166 +6,147 @@ let chart;
 
 function calcularPrecio() {
 
-    // INPUTS
-    const materia =
-        Number(document.getElementById("materia").value) || 0;
+    const materia = Number(document.getElementById("materia").value) || 0;
+    const mano = Number(document.getElementById("mano").value) || 0;
+    const empaque = Number(document.getElementById("empaque").value) || 0;
+    const transporte = Number(document.getElementById("transporte").value) || 0;
+    const otros = Number(document.getElementById("otros").value) || 0;
+    const gananciaPorc = Number(document.getElementById("ganancia").value) || 0;
+    const cantidad = Number(document.getElementById("cantidad").value) || 1;
 
-    const mano =
-        Number(document.getElementById("mano").value) || 0;
-
-    const empaque =
-        Number(document.getElementById("empaque").value) || 0;
-
-    const transporte =
-        Number(document.getElementById("transporte").value) || 0;
-
-    const otros =
-        Number(document.getElementById("otros").value) || 0;
-
-    const ganancia =
-        Number(document.getElementById("ganancia").value) || 0;
-
-    // VALIDACIÓN
-    if (ganancia < 0) {
-
+    if (gananciaPorc < 0) {
         mostrarError("El porcentaje de ganancia no puede ser negativo.");
-
         return;
     }
 
-    // CÁLCULOS
-    const costoTotal =
-        materia + mano + empaque + transporte + otros;
+    if (cantidad <= 0) {
+        mostrarError("La cantidad debe ser mayor a 0.");
+        return;
+    }
 
-    const gananciaValor =
-        costoTotal * (ganancia / 100);
+    // CÁLCULOS BASE
+    const costoTotal = materia + mano + empaque + transporte + otros;
+    const gananciaValor = costoTotal * (gananciaPorc / 100);
+    const precioUnitario = costoTotal + gananciaValor;
 
-    const precioFinal =
-        costoTotal + gananciaValor;
+    // DESCUENTOS POR VOLUMEN
+    let descuento = 0;
+
+    if (cantidad >= 50) {
+        descuento = 0.20; // 20%
+    } else if (cantidad >= 10) {
+        descuento = 0.10; // 10%
+    }
+
+    const precioConDescuento = precioUnitario * (1 - descuento);
+    const totalVenta = precioConDescuento * cantidad;
 
     // RESULTADO
     mostrarResultado(
         costoTotal,
         gananciaValor,
-        precioFinal
+        precioUnitario,
+        precioConDescuento,
+        totalVenta,
+        cantidad,
+        descuento
     );
 
     // GRÁFICO
-    crearGrafico(
-        costoTotal,
-        gananciaValor,
-        precioFinal
-    );
+    crearGrafico(costoTotal, gananciaValor, precioUnitario);
 }
 
 /* =========================
-   MOSTRAR RESULTADO
+   RESULTADO
 ========================= */
 
-function mostrarResultado(costo, ganancia, precio) {
+function mostrarResultado(costo, ganancia, precioUnitario, precioFinal, total, cantidad, descuento) {
 
-    const resultado =
-        document.getElementById("resultado");
+    const ahorro = (precioUnitario - precioFinal) * cantidad;
 
-    resultado.innerHTML = `
-    
+    document.getElementById("resultado").innerHTML = `
         <div class="result-item">
-            <span>💰 Costo total</span>
-            <strong>$${costo.toFixed(2)}</strong>
+            💰 Costo total: <strong>$${costo.toFixed(2)}</strong>
         </div>
 
         <div class="result-item">
-            <span>📈 Ganancia</span>
-            <strong>$${ganancia.toFixed(2)}</strong>
+            📈 Ganancia: <strong>$${ganancia.toFixed(2)}</strong>
+        </div>
+
+        <div class="result-item">
+            🏷️ Precio unitario: <strong>$${precioUnitario.toFixed(2)}</strong>
+        </div>
+
+        <div class="result-item">
+            📦 Descuento aplicado: <strong>${(descuento * 100).toFixed(0)}%</strong>
+        </div>
+
+        ${descuento > 0 ? `
+        <div class="result-item">
+            💡 Ahorro por volumen: <strong>$${ahorro.toFixed(2)}</strong>
+        </div>
+        ` : ""}
+
+        <div class="result-item total-result">
+            🚀 Precio final por unidad: <strong>$${precioFinal.toFixed(2)}</strong>
         </div>
 
         <div class="result-item total-result">
-            <span>🚀 Precio recomendado</span>
-            <strong>$${precio.toFixed(2)}</strong>
+            💵 Total (${cantidad} unidades): <strong>$${total.toFixed(2)}</strong>
         </div>
-
     `;
 }
 
 /* =========================
-   MOSTRAR ERROR
+   ERROR
 ========================= */
 
-function mostrarError(mensaje) {
-
-    const resultado =
-        document.getElementById("resultado");
-
-    resultado.innerHTML = `
-    
-        <div class="error-box">
-            ⚠️ ${mensaje}
-        </div>
-
+function mostrarError(msg) {
+    document.getElementById("resultado").innerHTML = `
+        <div class="error-box">⚠️ ${msg}</div>
     `;
 }
 
 /* =========================
-   CREAR GRÁFICO
+   GRÁFICO
 ========================= */
 
 function crearGrafico(costo, ganancia, precio) {
 
-    const ctx =
-        document.getElementById("grafico")
-        .getContext("2d");
+    const ctx = document.getElementById("grafico").getContext("2d");
 
-    // ELIMINA EL ANTERIOR
     if (chart) {
         chart.destroy();
     }
 
     chart = new Chart(ctx, {
-
         type: "doughnut",
-
         data: {
-
-            labels: [
-                "Costo",
-                "Ganancia",
-                "Precio final"
-            ],
-
+            labels: ["Costo", "Ganancia", "Precio unitario"],
             datasets: [{
-
-                data: [
-                    costo,
-                    ganancia,
-                    precio
-                ],
-
+                data: [costo, ganancia, precio],
                 backgroundColor: [
                     "rgba(56, 189, 248, 0.85)",
                     "rgba(34, 197, 94, 0.85)",
                     "rgba(168, 85, 247, 0.85)"
-                ],
-
-                borderWidth: 0,
-                borderRadius: 8
-
+                ]
             }]
         },
-
         options: {
-
             responsive: true,
-
             cutout: "68%",
 
             plugins: {
-
                 legend: {
-
                     labels: {
-                        color: "#ffffff",
-                        font: {
-                            size: 14
+                        color: "#ffffff"
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            let value = context.raw;
+                            return `${context.label}: $${value.toFixed(2)}`;
                         }
                     }
                 }
