@@ -1,26 +1,49 @@
 let chart;
 
 /* =========================
+   VALIDACIÓN SEGURA
+========================= */
+
+function validarNumero(valor) {
+    const numero = parseFloat(valor);
+
+    if (valor === "" || isNaN(numero) || numero < 0) {
+        return null;
+    }
+
+    return numero;
+}
+
+/* =========================
    CALCULAR PRECIO
 ========================= */
 
 function calcularPrecio() {
 
-    const materia = Number(document.getElementById("materia").value) || 0;
-    const mano = Number(document.getElementById("mano").value) || 0;
-    const empaque = Number(document.getElementById("empaque").value) || 0;
-    const transporte = Number(document.getElementById("transporte").value) || 0;
-    const otros = Number(document.getElementById("otros").value) || 0;
-    const gananciaPorc = Number(document.getElementById("ganancia").value) || 0;
-    const cantidad = Number(document.getElementById("cantidad").value) || 1;
+    const materia = validarNumero(document.getElementById("materia").value);
+    const mano = validarNumero(document.getElementById("mano").value);
+    const empaque = validarNumero(document.getElementById("empaque").value);
+    const transporte = validarNumero(document.getElementById("transporte").value);
+    const otros = validarNumero(document.getElementById("otros").value);
+    const gananciaPorc = validarNumero(document.getElementById("ganancia").value);
+    const cantidad = validarNumero(document.getElementById("cantidad").value);
 
-    if (gananciaPorc < 0) {
-        mostrarError("El porcentaje de ganancia no puede ser negativo.");
+    // VALIDACIÓN GENERAL
+    if (
+        materia === null ||
+        mano === null ||
+        empaque === null ||
+        transporte === null ||
+        otros === null ||
+        gananciaPorc === null ||
+        cantidad === null
+    ) {
+        mostrarError("⚠️ Completa todos los campos con valores válidos (0 o mayores).");
         return;
     }
 
-    if (cantidad <= 0) {
-        mostrarError("La cantidad debe ser mayor a 0.");
+    if (cantidad === 0) {
+        mostrarError("⚠️ La cantidad debe ser mayor a 0.");
         return;
     }
 
@@ -33,15 +56,14 @@ function calcularPrecio() {
     let descuento = 0;
 
     if (cantidad >= 50) {
-        descuento = 0.20; // 20%
+        descuento = 0.20;
     } else if (cantidad >= 10) {
-        descuento = 0.10; // 10%
+        descuento = 0.10;
     }
 
     const precioConDescuento = precioUnitario * (1 - descuento);
     const totalVenta = precioConDescuento * cantidad;
 
-    // RESULTADO
     mostrarResultado(
         costoTotal,
         gananciaValor,
@@ -52,7 +74,6 @@ function calcularPrecio() {
         descuento
     );
 
-    // GRÁFICO
     crearGrafico(costoTotal, gananciaValor, precioUnitario);
 }
 
@@ -135,7 +156,6 @@ function crearGrafico(costo, ganancia, precio) {
         options: {
             responsive: true,
             cutout: "68%",
-
             plugins: {
                 legend: {
                     labels: {

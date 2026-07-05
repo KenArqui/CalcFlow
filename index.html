@@ -29,13 +29,10 @@
 
         <div class="container navbar">
 
-            <!-- LOGO -->
             <div class="logo">
                 <img src="assets/logo/logo.png" alt="CalcFlow Logo">
-                
             </div>
 
-            <!-- NAV -->
             <nav>
                 <ul class="nav-links">
                     <li><a href="#inicio">Inicio</a></li>
@@ -44,10 +41,7 @@
                 </ul>
             </nav>
 
-            <!-- CTA -->
-            <a href="#app" class="btn">
-                Usar CalcFlow
-            </a>
+            <a href="#app" class="btn">Usar CalcFlow</a>
 
         </div>
 
@@ -58,38 +52,22 @@
 
         <div class="container hero-content">
 
-            <!-- TEXTO -->
             <div class="hero-text">
 
-                <span class="hero-badge">
-                    🚀 Precios inteligentes
-                </span>
+                <span class="hero-badge">🚀 Precios inteligentes</span>
 
-                <h1>
-                    Calcula precios inteligentes en segundos
-                </h1>
+                <h1>Calcula precios inteligentes en segundos</h1>
 
-                <p>
-                    Optimiza costos, márgenes y ganancias desde una sola herramienta moderna y rápida.
-                </p>
+                <p>Optimiza costos, márgenes y ganancias desde una sola herramienta moderna y rápida.</p>
 
                 <div class="hero-buttons">
-
-                    <a href="#app" class="btn">
-                        Usar CalcFlow
-                    </a>
-
-                    <a href="#funciones" class="btn-secondary">
-                        Ver funciones
-                    </a>
-
+                    <a href="#app" class="btn">Usar CalcFlow</a>
+                    <a href="#funciones" class="btn-secondary">Ver funciones</a>
                 </div>
 
             </div>
 
-            <!-- MOCKUP -->
             <div class="hero-preview">
-
                 <div class="calculator-card">
 
                     <div class="card-header">
@@ -99,7 +77,6 @@
                     </div>
 
                     <div class="card-body">
-
                         <div class="price-row">
                             <span>Costo</span>
                             <strong>$25</strong>
@@ -114,11 +91,9 @@
                             <span>Precio final</span>
                             <strong>$33.75</strong>
                         </div>
-
                     </div>
 
                 </div>
-
             </div>
 
         </div>
@@ -130,9 +105,7 @@
 
         <div class="container">
 
-            <h2 class="section-title">
-                ¿Qué puedes hacer con CalcFlow?
-            </h2>
+            <h2 class="section-title">¿Qué puedes hacer con CalcFlow?</h2>
 
             <p class="section-subtitle">
                 Todo lo que necesitas para calcular precios de forma rápida y profesional.
@@ -142,23 +115,17 @@
 
                 <div class="feature-card">
                     <h3>📈 Márgenes automáticos</h3>
-                    <p>
-                        Calcula automáticamente el mejor margen de ganancia para tus productos.
-                    </p>
+                    <p>Calcula automáticamente el mejor margen de ganancia para tus productos.</p>
                 </div>
 
                 <div class="feature-card">
                     <h3>⚡ Resultados instantáneos</h3>
-                    <p>
-                        Obtén precios recomendados en segundos sin fórmulas complicadas.
-                    </p>
+                    <p>Obtén precios recomendados en segundos sin fórmulas complicadas.</p>
                 </div>
 
                 <div class="feature-card">
                     <h3>💼 Ideal para negocios</h3>
-                    <p>
-                        Perfecto para emprendedores, tiendas y negocios modernos.
-                    </p>
+                    <p>Perfecto para emprendedores, tiendas y negocios modernos.</p>
                 </div>
 
             </div>
@@ -172,31 +139,27 @@
 
         <div class="container">
 
-            <h2 class="section-title">
-                Calculadora de Precios
-            </h2>
+            <h2 class="section-title">Calculadora de Precios</h2>
 
             <p class="section-subtitle">
                 Ingresa tus costos y obtén tu precio de venta recomendado.
             </p>
 
+            <!-- ALERTA -->
+            <div id="alerta" class="alerta" style="display:none;"></div>
+
             <div class="calc-box">
 
                 <div class="calc-card">
 
-                    <input type="number" id="materia" placeholder="Costo materia prima">
-
-                    <input type="number" id="mano" placeholder="Mano de obra">
-
-                    <input type="number" id="empaque" placeholder="Empaque">
-
-                    <input type="number" id="transporte" placeholder="Transporte">
-
-                    <input type="number" id="otros" placeholder="Otros gastos">
-
-                    <input type="number" id="ganancia" placeholder="% Ganancia">
-
-                    <input type="number" id="cantidad" placeholder="Cantidad de productos" value="1">
+                    <!-- INPUTS (bloqueo negativos con min=0) -->
+                    <input type="number" id="materia" placeholder="Costo materia prima" min="0">
+                    <input type="number" id="mano" placeholder="Mano de obra" min="0">
+                    <input type="number" id="empaque" placeholder="Empaque" min="0">
+                    <input type="number" id="transporte" placeholder="Transporte" min="0">
+                    <input type="number" id="otros" placeholder="Otros gastos" min="0">
+                    <input type="number" id="ganancia" placeholder="% Ganancia" min="0">
+                    <input type="number" id="cantidad" placeholder="Cantidad de productos" value="1" min="0">
 
                     <button class="btn" onclick="calcularPrecio()">
                         Calcular precio
@@ -218,11 +181,7 @@
     <footer class="footer">
 
         <div class="container footer-content">
-
-            <p>
-                © 2025 CalcFlow. Todos los derechos reservados.
-            </p>
-
+            <p>© 2025 CalcFlow. Todos los derechos reservados.</p>
         </div>
 
     </footer>
