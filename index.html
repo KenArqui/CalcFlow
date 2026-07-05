@@ -5,163 +5,233 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <h1>Calcula precios de forma inteligente con CalcFlow 🚀</h1>
+    <title>CalcFlow | Calcula precios inteligentes</title>
 
     <meta name="description"
-        content="CalcFlow ayuda a emprendedores a calcular el precio ideal de venta considerando todos los costos y el margen de ganancia.">
+        content="CalcFlow ayuda a emprendedores a calcular precios inteligentes considerando costos y ganancias.">
 
     <link rel="icon" href="assets/logo/logo.png">
 
+    <!-- GOOGLE FONTS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
         rel="stylesheet">
 
+    <!-- CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body>
 
-<!-- HEADER -->
-<header class="header">
-    <div class="container">
+    <!-- HEADER -->
+    <header class="header">
 
-        <div class="logo">
-            <img src="assets/logo/logo.png" alt="CalcFlow Logo">
+        <div class="container navbar">
+
+            <!-- LOGO -->
+            <div class="logo">
+                <img src="assets/logo/logo.png" alt="CalcFlow Logo">
+                <span>CalcFlow</span>
+            </div>
+
+            <!-- NAV -->
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#funciones">Funciones</a></li>
+                    <li><a href="#app">Calculadora</a></li>
+                </ul>
+            </nav>
+
+            <!-- CTA -->
+            <a href="#app" class="btn">
+                Usar CalcFlow
+            </a>
+
         </div>
 
-        <nav class="navbar">
-            <ul class="nav-links">
-                <li><a href="#inicio">Inicio</a></li>
-                <li><a href="#funciones">Funciones</a></li>
-                <li><a href="#app">Calculadora</a></li>
-                <li><a href="#contacto">Contacto</a></li>
-            </ul>
-        </nav>
+    </header>
 
-        <div class="cta">
-            <a href="#app" class="btn">Probar ahora</a>
+    <!-- HERO -->
+    <section class="hero" id="inicio">
+
+        <div class="container hero-content">
+
+            <!-- TEXTO -->
+            <div class="hero-text">
+
+                <span class="hero-badge">
+                    🚀 Precios inteligentes
+                </span>
+
+                <h1>
+                    Calcula precios inteligentes en segundos
+                </h1>
+
+                <p>
+                    Optimiza costos, márgenes y ganancias desde una sola herramienta moderna y rápida.
+                </p>
+
+                <div class="hero-buttons">
+
+                    <a href="#app" class="btn">
+                        Usar CalcFlow
+                    </a>
+
+                    <a href="#funciones" class="btn-secondary">
+                        Ver funciones
+                    </a>
+
+                </div>
+
+            </div>
+
+            <!-- MOCKUP -->
+            <div class="hero-preview">
+
+                <div class="calculator-card">
+
+                    <div class="card-header">
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                    </div>
+
+                    <div class="card-body">
+
+                        <div class="price-row">
+                            <span>Costo</span>
+                            <strong>$25</strong>
+                        </div>
+
+                        <div class="price-row">
+                            <span>Margen</span>
+                            <strong>35%</strong>
+                        </div>
+
+                        <div class="price-row total">
+                            <span>Precio final</span>
+                            <strong>$33.75</strong>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
         </div>
 
-    </div>
-</header>
+    </section>
 
-<!-- HERO -->
-<section class="hero" id="inicio">
-    <div class="container hero-content">
+    <!-- FEATURES -->
+    <section class="features" id="funciones">
 
-        <div class="hero-text">
-            <h1>Calcula precios de forma inteligente con CalcFlow</h1>
-            <p>
-                Optimiza tus costos, agrega márgenes y toma mejores decisiones
-                en segundos con nuestra calculadora de precios inteligente.
+        <div class="container">
+
+            <h2 class="section-title">
+                ¿Qué puedes hacer con CalcFlow?
+            </h2>
+
+            <p class="section-subtitle">
+                Todo lo que necesitas para calcular precios de forma rápida y profesional.
             </p>
 
-            <a href="#app" class="btn">Probar gratis</a>
-        </div>
+            <div class="features-grid">
 
-        <div class="hero-box">
-            <div class="mockup">
-                <p>📊 Vista de calculadora</p>
-            </div>
-        </div>
+                <div class="feature-card">
+                    <h3>📈 Márgenes automáticos</h3>
+                    <p>
+                        Calcula automáticamente el mejor margen de ganancia para tus productos.
+                    </p>
+                </div>
 
-    </div>
-</section>
+                <div class="feature-card">
+                    <h3>⚡ Resultados instantáneos</h3>
+                    <p>
+                        Obtén precios recomendados en segundos sin fórmulas complicadas.
+                    </p>
+                </div>
 
-<!-- FEATURES -->
-<section class="features" id="funciones">
-    <div class="container">
-
-        <h2 class="section-title">¿Qué puedes hacer con CalcFlow?</h2>
-        <p class="section-subtitle">
-            Todo lo que necesitas para calcular precios de forma rápida y profesional.
-        </p>
-
-        <div class="features-grid">
-
-            <div class="feature-card">
-                <h3>📊 Cálculo de precios</h3>
-                <p>Calcula automáticamente el precio ideal de tus productos o servicios.</p>
-            </div>
-
-            <div class="feature-card">
-                <h3>💰 Control de márgenes</h3>
-                <p>Define y ajusta tus márgenes de ganancia de forma inteligente.</p>
-            </div>
-
-            <div class="feature-card">
-                <h3>⚡ Resultados instantáneos</h3>
-                <p>Obtén resultados en segundos sin complicaciones ni fórmulas.</p>
-            </div>
-
-        </div>
-
-    </div>
-</section>
-
-<!-- CALCULADORA (APP REAL) -->
-<section class="calculator" id="app">
-    <div class="container">
-
-        <h2 class="section-title">Calculadora de Precios</h2>
-        <p class="section-subtitle">
-            Ingresa tus costos y obtén tu precio de venta recomendado.
-        </p>
-
-        <div class="calc-box">
-
-            <div class="calc-card">
-
-                <input type="number" id="materia" placeholder="Costo materia prima">
-                <input type="number" id="mano" placeholder="Mano de obra">
-                <input type="number" id="empaque" placeholder="Empaque">
-                <input type="number" id="transporte" placeholder="Transporte">
-                <input type="number" id="otros" placeholder="Otros gastos">
-                <input type="number" id="ganancia" placeholder="% Ganancia">
-
-                <button class="btn" onclick="calcularPrecio()">
-                    Calcular precio
-                </button>
-
-                <div class="result" id="resultado"></div>
-                <canvas id="grafico" width="400" height="200"></canvas>
+                <div class="feature-card">
+                    <h3>💼 Ideal para negocios</h3>
+                    <p>
+                        Perfecto para emprendedores, tiendas y negocios modernos.
+                    </p>
+                </div>
 
             </div>
 
         </div>
 
-    </div>
-</section>
+    </section>
 
-<!-- CONTACTO -->
-<section class="contact" id="contacto">
-    <div class="container">
+    <!-- CALCULADORA -->
+    <section class="calculator" id="app">
 
-        <h2 class="section-title">Accede a CalcFlow</h2>
-        <p class="section-subtitle">
-            Déjanos tu mensaje o solicita acceso a la herramienta.
-        </p>
+        <div class="container">
 
-        <form class="contact-form">
+            <h2 class="section-title">
+                Calculadora de Precios
+            </h2>
 
-            <input type="text" placeholder="Tu nombre" required>
-            <input type="email" placeholder="Tu correo" required>
-            <textarea placeholder="Escribe tu mensaje..." rows="5"></textarea>
+            <p class="section-subtitle">
+                Ingresa tus costos y obtén tu precio de venta recomendado.
+            </p>
 
-            <button type="submit" class="btn">Enviar mensaje</button>
+            <div class="calc-box">
 
-        </form>
+                <div class="calc-card">
 
-    </div>
-</section>
+                    <input type="number" id="materia" placeholder="Costo materia prima">
 
-<!-- Grafico creo -->
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                    <input type="number" id="mano" placeholder="Mano de obra">
 
-<!-- JS -->
-<script src="assets/js/script.js"></script>
+                    <input type="number" id="empaque" placeholder="Empaque">
+
+                    <input type="number" id="transporte" placeholder="Transporte">
+
+                    <input type="number" id="otros" placeholder="Otros gastos">
+
+                    <input type="number" id="ganancia" placeholder="% Ganancia">
+
+                    <button class="btn" onclick="calcularPrecio()">
+                        Calcular precio
+                    </button>
+
+                    <div class="result" id="resultado"></div>
+
+                    <canvas id="grafico" width="400" height="200"></canvas>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+
+        <div class="container footer-content">
+
+            <p>
+                © 2025 CalcFlow. Todos los derechos reservados.
+            </p>
+
+        </div>
+
+    </footer>
+
+    <!-- CHART -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- JS -->
+    <script src="assets/js/script.js"></script>
 
 </body>
+
 </html>

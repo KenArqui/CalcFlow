@@ -1,49 +1,173 @@
-let chart; // variable global
+let chart;
+
+/* =========================
+   CALCULAR PRECIO
+========================= */
 
 function calcularPrecio() {
-    let materia = Number(document.getElementById("materia").value) || 0;
-    let mano = Number(document.getElementById("mano").value) || 0;
-    let empaque = Number(document.getElementById("empaque").value) || 0;
-    let transporte = Number(document.getElementById("transporte").value) || 0;
-    let otros = Number(document.getElementById("otros").value) || 0;
-    let ganancia = Number(document.getElementById("ganancia").value) || 0;
 
-    let costoTotal = materia + mano + empaque + transporte + otros;
-    let gananciaValor = costoTotal * (ganancia / 100);
-    let precioFinal = costoTotal + gananciaValor;
+    // INPUTS
+    const materia =
+        Number(document.getElementById("materia").value) || 0;
 
-    document.getElementById("resultado").innerHTML = `
-        <p>💰 <strong>Costo total:</strong> $${costoTotal.toFixed(2)}</p>
-        <p>📈 <strong>Ganancia:</strong> $${gananciaValor.toFixed(2)}</p>
-        <p>🚀 <strong>Precio recomendado:</strong> $${precioFinal.toFixed(2)}</p>
-    `;
+    const mano =
+        Number(document.getElementById("mano").value) || 0;
+
+    const empaque =
+        Number(document.getElementById("empaque").value) || 0;
+
+    const transporte =
+        Number(document.getElementById("transporte").value) || 0;
+
+    const otros =
+        Number(document.getElementById("otros").value) || 0;
+
+    const ganancia =
+        Number(document.getElementById("ganancia").value) || 0;
+
+    // VALIDACIÓN
+    if (ganancia < 0) {
+
+        mostrarError("El porcentaje de ganancia no puede ser negativo.");
+
+        return;
+    }
+
+    // CÁLCULOS
+    const costoTotal =
+        materia + mano + empaque + transporte + otros;
+
+    const gananciaValor =
+        costoTotal * (ganancia / 100);
+
+    const precioFinal =
+        costoTotal + gananciaValor;
+
+    // RESULTADO
+    mostrarResultado(
+        costoTotal,
+        gananciaValor,
+        precioFinal
+    );
 
     // GRÁFICO
-    const ctx = document.getElementById("grafico").getContext("2d");
+    crearGrafico(
+        costoTotal,
+        gananciaValor,
+        precioFinal
+    );
+}
 
+/* =========================
+   MOSTRAR RESULTADO
+========================= */
+
+function mostrarResultado(costo, ganancia, precio) {
+
+    const resultado =
+        document.getElementById("resultado");
+
+    resultado.innerHTML = `
+    
+        <div class="result-item">
+            <span>💰 Costo total</span>
+            <strong>$${costo.toFixed(2)}</strong>
+        </div>
+
+        <div class="result-item">
+            <span>📈 Ganancia</span>
+            <strong>$${ganancia.toFixed(2)}</strong>
+        </div>
+
+        <div class="result-item total-result">
+            <span>🚀 Precio recomendado</span>
+            <strong>$${precio.toFixed(2)}</strong>
+        </div>
+
+    `;
+}
+
+/* =========================
+   MOSTRAR ERROR
+========================= */
+
+function mostrarError(mensaje) {
+
+    const resultado =
+        document.getElementById("resultado");
+
+    resultado.innerHTML = `
+    
+        <div class="error-box">
+            ⚠️ ${mensaje}
+        </div>
+
+    `;
+}
+
+/* =========================
+   CREAR GRÁFICO
+========================= */
+
+function crearGrafico(costo, ganancia, precio) {
+
+    const ctx =
+        document.getElementById("grafico")
+        .getContext("2d");
+
+    // ELIMINA EL ANTERIOR
     if (chart) {
-        chart.destroy(); // evita duplicados
+        chart.destroy();
     }
 
     chart = new Chart(ctx, {
-        type: "bar",
+
+        type: "doughnut",
+
         data: {
-            labels: ["Costo", "Ganancia", "Precio final"],
+
+            labels: [
+                "Costo",
+                "Ganancia",
+                "Precio final"
+            ],
+
             datasets: [{
-                label: "USD",
-                data: [costoTotal, gananciaValor, precioFinal],
+
+                data: [
+                    costo,
+                    ganancia,
+                    precio
+                ],
+
                 backgroundColor: [
-                    "rgba(255, 99, 132, 0.6)",
-                    "rgba(54, 162, 235, 0.6)",
-                    "rgba(75, 192, 192, 0.6)"
-                ]
+                    "rgba(56, 189, 248, 0.85)",
+                    "rgba(34, 197, 94, 0.85)",
+                    "rgba(168, 85, 247, 0.85)"
+                ],
+
+                borderWidth: 0,
+                borderRadius: 8
+
             }]
         },
+
         options: {
+
             responsive: true,
+
+            cutout: "68%",
+
             plugins: {
+
                 legend: {
-                    display: false
+
+                    labels: {
+                        color: "#ffffff",
+                        font: {
+                            size: 14
+                        }
+                    }
                 }
             }
         }
