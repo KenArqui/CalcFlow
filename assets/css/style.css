@@ -13,7 +13,7 @@ html {
 }
 
 body {
-    font-family: 'Inter', sans-serif;
+    font-family: 'DM Sans', sans-serif;
     background: linear-gradient(
         180deg,
         #071226,
@@ -22,6 +22,14 @@ body {
     );
     color: white;
     overflow-x: hidden;
+}
+
+
+/* Titulo mejora */
+.hero-text h1,
+.section-title {
+    font-weight: 700;
+    letter-spacing: -0.5px;
 }
 
 /* =========================
@@ -40,15 +48,18 @@ body {
 
 .header {
     width: 100%;
-    padding: 20px 0;
+    padding: 18px 0;
     position: sticky;
     top: 0;
     z-index: 1000;
 
-    background: rgba(7, 18, 38, 0.7);
-    backdrop-filter: blur(12px);
+    /* 🔥 mejor contraste */
+    background: rgba(7, 18, 38, 0.92);
+    backdrop-filter: blur(14px);
 
-    border-bottom: 1px solid rgba(255,255,255,0.06);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+
+    transition: 0.3s ease;
 }
 
 /* NAVBAR */
@@ -57,6 +68,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 20px;
 }
 
 /* LOGO */
@@ -64,16 +76,14 @@ body {
 .logo {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 20px;
 }
 
 .logo img {
-    width: 50px;
-}
+    width: 155px;
 
-.logo span {
-    font-size: 20px;
-    font-weight: 700;
+    /* 🔥 clave para que no se pierda */
+    filter: drop-shadow(0 4px 10px rgba(0,0,0,0.55));
 }
 
 /* NAV */
@@ -191,17 +201,11 @@ body {
 
 .calculator-card {
     width: 420px;
-
     background: rgba(255,255,255,0.04);
-
     border: 1px solid rgba(255,255,255,0.08);
-
     border-radius: 24px;
-
     padding: 24px;
-
     backdrop-filter: blur(12px);
-
     box-shadow: 0 10px 40px rgba(0,0,0,0.3);
 }
 
@@ -257,12 +261,9 @@ body {
     max-width: 700px;
     margin: auto;
     margin-bottom: 60px;
-
     color: rgba(255,255,255,0.65);
     line-height: 1.7;
 }
-
-/* GRID */
 
 .features-grid {
     display: grid;
@@ -270,25 +271,17 @@ body {
     gap: 24px;
 }
 
-/* CARD */
-
 .feature-card {
     background: rgba(255,255,255,0.04);
-
     border: 1px solid rgba(255,255,255,0.08);
-
     padding: 30px;
-
     border-radius: 20px;
-
     transition: 0.3s ease;
 }
 
 .feature-card:hover {
     transform: translateY(-6px);
-
     border-color: rgba(56, 189, 248, 0.4);
-
     box-shadow: 0 10px 30px rgba(0,0,0,0.25);
 }
 
@@ -318,37 +311,23 @@ body {
 .calc-card {
     width: 100%;
     max-width: 550px;
-
     background: rgba(255,255,255,0.04);
-
     border: 1px solid rgba(255,255,255,0.08);
-
     border-radius: 24px;
-
     padding: 30px;
-
     backdrop-filter: blur(10px);
-
     display: flex;
     flex-direction: column;
     gap: 16px;
 }
 
-/* INPUTS */
-
 .calc-card input {
     padding: 14px;
-
     border-radius: 12px;
-
     border: 1px solid rgba(255,255,255,0.1);
-
     background: rgba(255,255,255,0.03);
-
     color: white;
-
     outline: none;
-
     transition: 0.3s ease;
 }
 
@@ -360,31 +339,19 @@ body {
     color: rgba(255,255,255,0.4);
 }
 
-/* RESULTADO */
-
 .result {
     margin-top: 10px;
-
     padding: 18px;
-
     border-radius: 14px;
-
     background: rgba(56,189,248,0.08);
-
     border: 1px solid rgba(56,189,248,0.3);
-
     line-height: 1.7;
 }
 
-/* GRAFICO */
-
 #grafico {
     margin-top: 20px;
-
     background: rgba(255,255,255,0.03);
-
     padding: 12px;
-
     border-radius: 14px;
 }
 
@@ -394,7 +361,6 @@ body {
 
 .footer {
     padding: 30px 0;
-
     border-top: 1px solid rgba(255,255,255,0.08);
 }
 
@@ -439,7 +405,6 @@ body {
         width: 100%;
         max-width: 420px;
     }
-
 }
 
 @media (max-width: 600px) {
@@ -475,5 +440,4 @@ body {
     .hero-buttons {
         flex-direction: column;
     }
-
 }
