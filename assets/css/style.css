@@ -482,3 +482,23 @@ body {
     color: #fca5a5;
     font-weight: 500;
 }
+
+.contenedor-titulo{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+/* Goku */
+.logo-goku{
+    width: 150px;      /* Ajusta el tamaño a tu gusto */
+    height: auto;
+    margin-bottom: 1px;
+}
+
+.contenedor-titulo h1{
+    margin: 0;
+    text-align: center;
+}

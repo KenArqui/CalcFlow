@@ -66,33 +66,16 @@ function calcularPrecio() {
     // PRECIO DE VENTA POR UNIDAD
     const precioUnitario = costoUnitario + gananciaValor;
 
-    /* =========================
-       DESCUENTOS
-    ========================= */
-
-    let descuento = 0;
-
-    if (cantidad >= 50) {
-        descuento = 0.20;
-    } else if (cantidad >= 10) {
-        descuento = 0.10;
-    }
-
-    // PRECIO FINAL POR UNIDAD
-    const precioConDescuento = precioUnitario * (1 - descuento);
-
-    // TOTAL FINAL
-    const totalVenta = precioConDescuento * cantidad;
+    // TOTAL DE VENTA
+    const totalVenta = precioUnitario * cantidad;
 
     mostrarResultado(
-        costoTotal,
-        costoUnitario,
-        gananciaValor,
-        precioUnitario,
-        precioConDescuento,
-        totalVenta,
-        cantidad,
-        descuento
+    costoTotal,
+    costoUnitario,
+    gananciaValor,
+    precioUnitario,
+    totalVenta,
+    cantidad
     );
 
     crearGrafico(costoUnitario, gananciaValor, precioUnitario);
@@ -107,50 +90,34 @@ function mostrarResultado(
     costoUnitario,
     ganancia,
     precioUnitario,
-    precioFinal,
     total,
-    cantidad,
-    descuento
+    cantidad
 ) {
-
-    const ahorro = (precioUnitario - precioFinal) * cantidad;
 
     document.getElementById("resultado").innerHTML = `
 
-        <div class="result-item">
-            💰 Costo total: <strong>$${costoTotal.toFixed(2)}</strong>
-        </div>
+    <div class="result-item">
+        💰 Costo total: <strong>$${costoTotal.toFixed(2)}</strong>
+    </div>
 
-        <div class="result-item">
-            📦 Costo por unidad: <strong>$${costoUnitario.toFixed(2)}</strong>
-        </div>
+    <div class="result-item">
+        📦 Costo por unidad: <strong>$${costoUnitario.toFixed(2)}</strong>
+    </div>
 
-        <div class="result-item">
-            📈 Ganancia (${descuento > 0 ? "con descuento" : "por unidad"}): 
-            <strong>$${ganancia.toFixed(2)}</strong>
-        </div>
+    <div class="result-item">
+        📈 Ganancia por unidad:
+        <strong>$${ganancia.toFixed(2)}</strong>
+    </div>
 
-        <div class="result-item">
-            🏷️ Precio unitario: <strong>$${precioUnitario.toFixed(2)}</strong>
-        </div>
+    <div class="result-item total-result">
+        🏷️ Precio de venta por unidad:
+        <strong>$${precioUnitario.toFixed(2)}</strong>
+    </div>
 
-        <div class="result-item">
-            📦 Descuento aplicado: <strong>${(descuento * 100).toFixed(0)}%</strong>
-        </div>
-
-        ${descuento > 0 ? `
-        <div class="result-item">
-            💡 Ahorro por volumen: <strong>$${ahorro.toFixed(2)}</strong>
-        </div>
-        ` : ""}
-
-        <div class="result-item total-result">
-            🚀 Precio final por unidad: <strong>$${precioFinal.toFixed(2)}</strong>
-        </div>
-
-        <div class="result-item total-result">
-            💵 Total (${cantidad} unidades): <strong>$${total.toFixed(2)}</strong>
-        </div>
+    <div class="result-item total-result">
+        💵 Total (${cantidad} unidades):
+        <strong>$${total.toFixed(2)}</strong>
+    </div>
     `;
 }
 
