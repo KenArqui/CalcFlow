@@ -28,7 +28,10 @@ function calcularPrecio() {
     const gananciaPorc = validarNumero(document.getElementById("ganancia").value);
     const cantidad = validarNumero(document.getElementById("cantidad").value);
 
-    // VALIDACIÓN GENERAL
+    /* =========================
+       VALIDACIONES
+    ========================= */
+
     if (
         materia === null ||
         mano === null ||
@@ -42,17 +45,31 @@ function calcularPrecio() {
         return;
     }
 
-    if (cantidad === 0) {
+    if (cantidad <= 0) {
         mostrarError("⚠️ La cantidad debe ser mayor a 0.");
         return;
     }
 
-    // CÁLCULOS BASE
-    const costoTotal = materia + mano + empaque + transporte + otros;
-    const gananciaValor = costoTotal * (gananciaPorc / 100);
-    const precioUnitario = costoTotal + gananciaValor;
+    /* =========================
+       CÁLCULOS CORRECTOS
+    ========================= */
 
-    // DESCUENTOS POR VOLUMEN
+    // COSTO TOTAL GENERAL
+    const costoTotal = materia + mano + empaque + transporte + otros;
+
+    // COSTO POR UNIDAD
+    const costoUnitario = costoTotal / cantidad;
+
+    // GANANCIA POR UNIDAD
+    const gananciaValor = costoUnitario * (gananciaPorc / 100);
+
+    // PRECIO DE VENTA POR UNIDAD
+    const precioUnitario = costoUnitario + gananciaValor;
+
+    /* =========================
+       DESCUENTOS
+    ========================= */
+
     let descuento = 0;
 
     if (cantidad >= 50) {
@@ -61,11 +78,15 @@ function calcularPrecio() {
         descuento = 0.10;
     }
 
+    // PRECIO FINAL POR UNIDAD
     const precioConDescuento = precioUnitario * (1 - descuento);
+
+    // TOTAL FINAL
     const totalVenta = precioConDescuento * cantidad;
 
     mostrarResultado(
         costoTotal,
+        costoUnitario,
         gananciaValor,
         precioUnitario,
         precioConDescuento,
@@ -74,24 +95,39 @@ function calcularPrecio() {
         descuento
     );
 
-    crearGrafico(costoTotal, gananciaValor, precioUnitario);
+    crearGrafico(costoUnitario, gananciaValor, precioUnitario);
 }
 
 /* =========================
    RESULTADO
 ========================= */
 
-function mostrarResultado(costo, ganancia, precioUnitario, precioFinal, total, cantidad, descuento) {
+function mostrarResultado(
+    costoTotal,
+    costoUnitario,
+    ganancia,
+    precioUnitario,
+    precioFinal,
+    total,
+    cantidad,
+    descuento
+) {
 
     const ahorro = (precioUnitario - precioFinal) * cantidad;
 
     document.getElementById("resultado").innerHTML = `
+
         <div class="result-item">
-            💰 Costo total: <strong>$${costo.toFixed(2)}</strong>
+            💰 Costo total: <strong>$${costoTotal.toFixed(2)}</strong>
         </div>
 
         <div class="result-item">
-            📈 Ganancia: <strong>$${ganancia.toFixed(2)}</strong>
+            📦 Costo por unidad: <strong>$${costoUnitario.toFixed(2)}</strong>
+        </div>
+
+        <div class="result-item">
+            📈 Ganancia (${descuento > 0 ? "con descuento" : "por unidad"}): 
+            <strong>$${ganancia.toFixed(2)}</strong>
         </div>
 
         <div class="result-item">
@@ -142,10 +178,13 @@ function crearGrafico(costo, ganancia, precio) {
 
     chart = new Chart(ctx, {
         type: "doughnut",
+
         data: {
-            labels: ["Costo", "Ganancia", "Precio unitario"],
+            labels: ["Costo por unidad", "Ganancia", "Precio final"],
+
             datasets: [{
                 data: [costo, ganancia, precio],
+
                 backgroundColor: [
                     "rgba(56, 189, 248, 0.85)",
                     "rgba(34, 197, 94, 0.85)",
@@ -153,15 +192,19 @@ function crearGrafico(costo, ganancia, precio) {
                 ]
             }]
         },
+
         options: {
             responsive: true,
+
             cutout: "68%",
+
             plugins: {
                 legend: {
                     labels: {
                         color: "#ffffff"
                     }
                 },
+
                 tooltip: {
                     callbacks: {
                         label: function(context) {
