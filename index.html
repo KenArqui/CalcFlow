@@ -148,26 +148,34 @@
             <!-- ALERTA -->
             <div id="alerta" class="alerta" style="display:none;"></div>
 
-            <div class="calc-box">
+            <!-- ZONA PDF -->
+            <div id="reportePDF">
 
-                <div class="calc-card">
+                <div class="calc-box">
 
-                    <!-- INPUTS (bloqueo negativos con min=0) -->
-                    <input type="number" id="materia" placeholder="Costo materia prima" min="0">
-                    <input type="number" id="mano" placeholder="Mano de obra" min="0">
-                    <input type="number" id="empaque" placeholder="Empaque" min="0">
-                    <input type="number" id="transporte" placeholder="Transporte" min="0">
-                    <input type="number" id="otros" placeholder="Otros gastos" min="0">
-                    <input type="number" id="ganancia" placeholder="% Ganancia" min="0">
-                    <input type="number" id="cantidad" placeholder="Cantidad de productos" value="1" min="0">
+                    <div class="calc-card">
 
-                    <button class="btn" onclick="calcularPrecio()">
-                        Calcular precio
-                    </button>
+                        <input type="number" id="materia" placeholder="Costo materia prima" min="0">
+                        <input type="number" id="mano" placeholder="Mano de obra" min="0">
+                        <input type="number" id="empaque" placeholder="Empaque" min="0">
+                        <input type="number" id="transporte" placeholder="Transporte" min="0">
+                        <input type="number" id="otros" placeholder="Otros gastos" min="0">
+                        <input type="number" id="ganancia" placeholder="% Ganancia" min="0">
+                        <input type="number" id="cantidad" placeholder="Cantidad de productos" value="1" min="0">
 
-                    <div class="result" id="resultado"></div>
+                        <button class="btn" onclick="calcularPrecio()">
+                            Calcular precio
+                        </button>
 
-                    <canvas id="grafico" width="400" height="200"></canvas>
+                        <button class="btn" onclick="generarPDF()">
+                            Descargar PDF
+                        </button>
+
+                        <div class="result" id="resultado"></div>
+
+                        <canvas id="grafico" width="400" height="200"></canvas>
+
+                    </div>
 
                 </div>
 
@@ -188,6 +196,9 @@
 
     <!-- CHART -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- jsPDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
     <!-- JS -->
     <script src="assets/js/script.js"></script>

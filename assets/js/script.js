@@ -217,3 +217,149 @@ function crearGrafico(costo, ganancia, precio) {
         }
     });
 }
+
+function generarPDF() {
+
+    const pdf = new window.jspdf.jsPDF();
+
+    // DATOS
+    const materia = document.getElementById("materia").value || 0;
+    const mano = document.getElementById("mano").value || 0;
+    const empaque = document.getElementById("empaque").value || 0;
+    const transporte = document.getElementById("transporte").value || 0;
+    const otros = document.getElementById("otros").value || 0;
+    const ganancia = document.getElementById("ganancia").value || 0;
+    const cantidad = document.getElementById("cantidad").value || 1;
+
+    // ===== CÁLCULOS =====
+
+    const costoTotal =
+        Number(materia) +
+        Number(mano) +
+        Number(empaque) +
+        Number(transporte) +
+        Number(otros);
+
+    const costoUnitario =
+        costoTotal / Number(cantidad);
+
+    const gananciaValor =
+        costoUnitario * (Number(ganancia) / 100);
+
+    const precioFinal =
+        costoUnitario + gananciaValor;
+
+    // ===== HEADER =====
+
+    pdf.setFillColor(15, 23, 42);
+
+    pdf.rect(0, 0, 210, 35, "F");
+
+    pdf.setTextColor(255, 255, 255);
+
+    pdf.setFont("helvetica", "bold");
+
+    pdf.setFontSize(24);
+
+    pdf.text("CalcFlow", 20, 22);
+
+    // ===== RESET COLOR =====
+
+    pdf.setTextColor(0, 0, 0);
+
+    // ===== SUBTITLE =====
+
+    pdf.setFontSize(14);
+
+    pdf.text("Reporte de costos y precios", 20, 50);
+
+    // ===== LINE =====
+
+    pdf.line(20, 55, 190, 55);
+
+    // ===== DATOS =====
+
+    pdf.setFontSize(12);
+
+    let y = 75;
+
+    pdf.text(`Materia prima: $${materia}`, 20, y);
+    y += 12;
+
+    pdf.text(`Mano de obra: $${mano}`, 20, y);
+    y += 12;
+
+    pdf.text(`Empaque: $${empaque}`, 20, y);
+    y += 12;
+
+    pdf.text(`Transporte: $${transporte}`, 20, y);
+    y += 12;
+
+    pdf.text(`Otros gastos: $${otros}`, 20, y);
+    y += 12;
+
+    pdf.text(`Ganancia: ${ganancia}%`, 20, y);
+    y += 12;
+
+    pdf.text(`Cantidad: ${cantidad}`, 20, y);
+
+    // ===== RESULTADOS =====
+
+    y += 25;
+
+    pdf.setFont("helvetica", "bold");
+
+    pdf.setFontSize(15);
+
+    pdf.text("Resultados", 20, y);
+
+    y += 15;
+
+    pdf.setFont("helvetica", "normal");
+
+    pdf.setFontSize(12);
+
+    pdf.text(
+        `Costo total: $${costoTotal.toFixed(2)}`,
+        20,
+        y
+    );
+
+    y += 12;
+
+    pdf.text(
+        `Costo por unidad: $${costoUnitario.toFixed(2)}`,
+        20,
+        y
+    );
+
+    y += 12;
+
+    pdf.text(
+        `Ganancia por unidad: $${gananciaValor.toFixed(2)}`,
+        20,
+        y
+    );
+
+    y += 12;
+
+    pdf.text(
+        `Precio final: $${precioFinal.toFixed(2)}`,
+        20,
+        y
+    );
+
+    // ===== FOOTER =====
+
+    pdf.setFontSize(10);
+
+    pdf.text(
+        "Generado automaticamente por CalcFlow",
+        20,
+        285
+    );
+
+    // ===== DESCARGAR =====
+
+    pdf.save("calcflow-reporte.pdf");
+}
