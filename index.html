@@ -158,13 +158,40 @@
 
                     <div class="calc-card">
 
-                        <input type="number" id="materia" placeholder="Costo materia prima" min="0">
-                        <input type="number" id="mano" placeholder="Mano de obra" min="0">
-                        <input type="number" id="empaque" placeholder="Empaque" min="0">
-                        <input type="number" id="transporte" placeholder="Transporte" min="0">
-                        <input type="number" id="otros" placeholder="Otros gastos" min="0">
-                        <input type="number" id="ganancia" placeholder="% Ganancia" min="0">
-                        <input type="number" id="cantidad" placeholder="Cantidad de productos" value="1" min="0">
+                        <div class="input-group">
+                            <label for="materia">Materia prima:</label>
+                            <input type="number" id="materia" min="0" placeholder="$0.00">
+                        </div>
+
+                        <div class="input-group">
+                            <label for="mano">Mano de obra:</label>
+                            <input type="number" id="mano" min="0" placeholder="$0.00">
+                        </div>
+
+                        <div class="input-group">
+                            <label for="empaque">Empaque:</label>
+                            <input type="number" id="empaque" min="0" placeholder="$0.00">
+                        </div>
+
+                        <div class="input-group">
+                            <label for="transporte">Transporte:</label>
+                            <input type="number" id="transporte" min="0" placeholder="$0.00">
+                        </div>
+
+                        <div class="input-group">
+                            <label for="otros">Otros gastos:</label>
+                            <input type="number" id="otros" min="0" placeholder="$0.00">
+                        </div>
+
+                        <div class="input-group">
+                            <label for="ganancia">Ganancia (%):</label>
+                            <input type="number" id="ganancia" min="0" placeholder="0">
+                        </div>
+
+                        <div class="input-group">
+                            <label for="cantidad">Cantidad:</label>
+                            <input type="number" id="cantidad" value="1" min="1">
+                        </div>
 
                         <button class="btn" onclick="calcularPrecio()">
                             Calcular precio
