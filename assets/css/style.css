@@ -66,8 +66,10 @@ body {
     /* 🔥 mejor contraste */
     background: linear-gradient(
     90deg,
-    rgba(30, 30, 35, 0.96),
-    rgba(32, 54, 90, 0.96)
+    #6d3bb8,
+    #2d3e75,
+    #1b1f3b
+    
 );
     backdrop-filter: blur(14px);
 
