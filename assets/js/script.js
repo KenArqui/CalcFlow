@@ -330,3 +330,18 @@ function generarPDF() {
 
     pdf.save("calcflow-reporte.pdf");
 }
+
+// ===== PREGUNTAS =====
+const preguntas = document.querySelectorAll(".faq-question");
+
+preguntas.forEach((pregunta) => {
+
+    pregunta.addEventListener("click", () => {
+
+        const item = pregunta.parentElement;
+
+        item.classList.toggle("active");
+
+    });
+
+});
