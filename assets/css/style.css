@@ -90,7 +90,8 @@ body {
 /* LOGO */
 
 .logo img {
-    width: 190px;
+    width: 250px;
+    border-radius: 20px;
 
     filter:
     drop-shadow(0 8px 20px rgba(139,92,246,0.35));
